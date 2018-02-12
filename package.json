@@ -14,7 +14,8 @@
     "express": "^4.16.2",
     "mongodb": "^3.0.2",
     "mongoose": "^5.0.3",
-    "mongoose-auto-increment": "^5.0.1"
+    "mongoose-auto-increment": "^5.0.1",
+    "mongoose-simpledb": "^5.1.0"
   },
   "devDependencies": {
     "nodemon": "^1.14.12"

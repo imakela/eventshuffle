@@ -5,16 +5,15 @@ const autoIncrement = require("mongoose-auto-increment");
 const app = express();
 const port = process.env.PORT || 3000;
 const routes = require("./api/routes/routes");
-Event = require("./api/models/model");
+Event = require("./api/models/event");
+Events = require("./api/models/events");
 
 mongoose.Promise = global.Promise;
-const connection = mongoose.connect("mongodb://localhost/Eventdb");
+mongoose.connect("mongodb://localhost/Eventdb");
 
 app.use(bodyparser.json());
 
-
 routes(app);
-
 
 app.listen(port);
 

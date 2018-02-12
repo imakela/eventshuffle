@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const autoIncrement = require("mongoose-auto-increment");
 
-const EventSchema = new Schema({
+const Event = new Schema({
     id: {
-        type: Number,
+        type: Number, default: 0,
     },
     name: {
         type: String,
@@ -24,7 +25,12 @@ const EventSchema = new Schema({
                 }]
             }
         }]
-    }
+    },
+
 });
 
-module.exports = mongoose.model("Events", EventSchema);
+autoIncrement.initialize(mongoose.connection);
+
+Event.plugin(autoIncrement.plugin, { model: 'event', field: 'id' });
+
+module.exports = mongoose.model("Event", Event);
