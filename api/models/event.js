@@ -28,7 +28,6 @@ const Event = new Schema({
             }
         }]
     },
-
 });
 
 Event.plugin(autoIncrement.plugin, { model: 'event', field: 'id' });
