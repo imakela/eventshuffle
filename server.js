@@ -9,6 +9,7 @@ Event = require("./api/models/event");
 Events = require("./api/models/events");
 
 mongoose.Promise = global.Promise;
+
 mongoose.connect("mongodb://localhost/Eventdb");
 
 app.use(bodyparser.json());
@@ -16,5 +17,6 @@ app.use(bodyparser.json());
 routes(app);
 
 app.listen(port);
+
 
 console.log("Server started on: ", port);
