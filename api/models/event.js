@@ -18,12 +18,13 @@ const Event = new Schema({
     },
     votes: {
         type: [{
-            dates: {
+            _id: false,
+            date: {
                 type: String,
             },
             people: {
                 type: [{
-                    String
+                    type: String,
                 }]
             }
         }]
