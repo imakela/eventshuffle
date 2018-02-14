@@ -1,14 +1,14 @@
 const mongoose = require("mongoose");
-const Events = mongoose.model("Events");
+const Event = mongoose.model("Event");
 
 exports.list_all_events = (req, res) => {
-    let query = Events.findOne({}, { "_id": 0, "events.id": 1, "events.name": 1 });
-    query.exec((err, event) => {
+    Event.find({}, { "_id": 0, "id": 1, "name": 1 }, (err, events) => {
         if (err) {
             console.log(err);
             res.send(err);
         } else {
-            res.json(event);
+            let resObj = { "events": events };
+            res.json(resObj);
         }
     });
 };

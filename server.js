@@ -6,7 +6,6 @@ const app = express();
 const port = process.env.PORT || 3000;
 const routes = require("./api/routes/routes");
 Event = require("./api/models/event");
-Events = require("./api/models/events");
 
 mongoose.Promise = global.Promise;
 

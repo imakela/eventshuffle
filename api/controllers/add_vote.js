@@ -1,37 +1,37 @@
 const mongoose = require("mongoose");
-Events = mongoose.model("Events");
+Event = mongoose.model("Event");
 
 exports.add_vote = (req, res) => {
-    Events.findOne({}, (err, eventsDoc) => {
+    Event.findOne({ "id": req.params.id }, (err, event) => {
         let eventIndex = req.params.id;
         if (err) {
             console.log(err);
             res.send(err);
         } else {
             for (let i = 0; i < req.body.votes.length; i++) {
-                let dateExists = (eventsDoc.events[eventIndex].votes.filter(e => e.date === req.body.votes[i])
+                let dateExists = (event.votes.filter(e => e.date === req.body.votes[i])
                     .length > 0);
                 if (!dateExists) {
-                    eventsDoc.events[eventIndex].votes
+                    event.votes
                         .push({ "date": req.body.votes[i], "people": [req.body.name] });
                 } else {
-                    let oldIndex = eventsDoc.events[eventIndex].votes.findIndex((e) => {
+                    let oldIndex = event.votes.findIndex((e) => {
                         return e.date === req.body.votes[i]
                     });
-                    eventsDoc.events[eventIndex].votes[oldIndex].people
+                    event.votes[oldIndex].people
                         .push(req.body.name);
                 }
 
             }
-            eventsDoc.save((err, saved) => {
+            event.save((err, saved) => {
                 if (err) {
                     console.log(err);
                 } else {
                     let resObj = {
                         "id": req.params.id,
-                        "name": saved.events[req.params.id].name,
-                        "dates": saved.events[req.params.id].dates,
-                        "votes": saved.events[req.params.id].votes
+                        "name": saved.name,
+                        "dates": saved.dates,
+                        "votes": saved.votes
                     }
                     res.json(resObj);
                 }

@@ -1,11 +1,14 @@
 const mongoose = require("mongoose");
-//Events = mongoose.model("Events");
+Event = mongoose.model("Event");
 
 exports.show_results = (req, res) => {
-    Events.findById(req.params.id, (err, event) => {
+    Event.findOne(req.params.id, (err, event) => {
         if (err) {
+            console.log(err);
             res.send(err);
+        } else {
+
+            res.json(event);
         }
-        res.json(event);
     });
 };
