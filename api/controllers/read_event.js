@@ -7,11 +7,14 @@ exports.read_event = (req, res) => {
             console.log(err);
             res.send(err);
         } else if (event !== null) {
+            let orderedVotes = event.votes.map((e) => {
+                return { "date": e.date, "people": e.people }
+            });
             let resObj = {
                 "id": event.id,
                 "name": event.name,
                 "dates": event.dates,
-                "votes": event.votes
+                "votes": orderedVotes
             };
             res.json(resObj);
         } else {

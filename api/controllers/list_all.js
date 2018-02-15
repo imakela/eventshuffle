@@ -7,7 +7,10 @@ exports.list_all_events = (req, res) => {
             console.log(err);
             res.send(err);
         } else {
-            let resObj = { "events": events };
+            let orderedData = events.map((e) => {
+                return { "id": e.id, "name": e.name }
+            });
+            let resObj = { "events": orderedData };
             res.json(resObj);
         }
     });

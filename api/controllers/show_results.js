@@ -10,7 +10,7 @@ exports.show_results = (req, res) => {
         } else if (event !== null) {
             let everyone = [...new Set(event.votes.map((v) => {
                 return v.people
-            }).reduce((a, b) => a.concat(b), []))];
+            }).reduce((a, b) => a.concat(b)))];
             let suitableDates = [];
             if (everyone.length > 0) {
                 for (let i = 0; i < event.votes.length; i++) {
@@ -19,10 +19,13 @@ exports.show_results = (req, res) => {
                     }
                 }
             }
+            let orderedDates = suitableDates.map((e) => {
+                return { "date": e.date, "people": e.people }
+            });
             let resObj = {
                 "id": event.id,
                 "name": event.name,
-                "suitableDates": suitableDates
+                "suitableDates": orderedDates
             };
             res.json(resObj);
         } else {
