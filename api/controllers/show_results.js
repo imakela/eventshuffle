@@ -8,14 +8,16 @@ exports.show_results = (req, res) => {
             console.log(err);
             res.send(err);
         } else if (event !== null) {
-            let everyone = [...new Set(event.votes.map((v) => {
-                return v.people
-            }).reduce((a, b) => a.concat(b)))];
             let suitableDates = [];
-            if (everyone.length > 0) {
-                for (let i = 0; i < event.votes.length; i++) {
-                    if (_.difference(everyone, event.votes[i].people).length === 0) {
-                        suitableDates.push(event.votes[i]);
+            if (event.votes.length > 0) {
+                let everyone = [...new Set(event.votes.map((v) => {
+                    return v.people
+                }).reduce((a, b) => a.concat(b)))];
+                if (everyone.length > 0) {
+                    for (let i = 0; i < event.votes.length; i++) {
+                        if (_.difference(everyone, event.votes[i].people).length === 0) {
+                            suitableDates.push(event.votes[i]);
+                        }
                     }
                 }
             }
