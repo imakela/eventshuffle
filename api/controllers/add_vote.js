@@ -7,7 +7,7 @@ exports.add_vote = (req, res) => {
         if (err) {
             console.log(err);
             res.send(err);
-        } else {
+        } else if (event !== null) {
             for (let i = 0; i < req.body.votes.length; i++) {
                 let dateExists = (event.votes.filter(e => e.date === req.body.votes[i])
                     .length > 0);
@@ -36,6 +36,8 @@ exports.add_vote = (req, res) => {
                     res.json(resObj);
                 }
             });
+        } else {
+            res.status(404).send("Event with id: '" + req.params.id + "' not found");
         }
     });
 };
