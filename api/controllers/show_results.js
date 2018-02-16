@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const _ = require("lodash");
-Event = mongoose.model("Event");
+const Event = mongoose.model("Event");
 
 exports.show_results = (req, res) => {
     Event.findOne({ "id": req.params.id }, (err, event) => {
@@ -10,7 +10,7 @@ exports.show_results = (req, res) => {
         } else if (event !== null) {
             let suitableDates = [];
             if (event.votes.length > 0) {
-                let everyone = [...new Set(event.votes.map((v) => {
+                const everyone = [...new Set(event.votes.map((v) => {
                     return v.people
                 }).reduce((a, b) => a.concat(b)))];
                 if (everyone.length > 0) {
@@ -21,10 +21,10 @@ exports.show_results = (req, res) => {
                     }
                 }
             }
-            let orderedDates = suitableDates.map((e) => {
+            const orderedDates = suitableDates.map((e) => {
                 return { "date": e.date, "people": e.people }
             });
-            let resObj = {
+            const resObj = {
                 "id": event.id,
                 "name": event.name,
                 "suitableDates": orderedDates

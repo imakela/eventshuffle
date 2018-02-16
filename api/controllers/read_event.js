@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-Event = mongoose.model("Event");
+const Event = mongoose.model("Event");
 
 exports.read_event = (req, res) => {
     Event.findOne({ "id": req.params.id }, (err, event) => {
@@ -7,10 +7,10 @@ exports.read_event = (req, res) => {
             console.log(err);
             res.send(err);
         } else if (event !== null) {
-            let orderedVotes = event.votes.map((e) => {
+            const orderedVotes = event.votes.map((e) => {
                 return { "date": e.date, "people": e.people }
             });
-            let resObj = {
+            const resObj = {
                 "id": event.id,
                 "name": event.name,
                 "dates": event.dates,

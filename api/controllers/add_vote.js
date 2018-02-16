@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-Event = mongoose.model("Event");
+const Event = mongoose.model("Event");
 
 exports.add_vote = (req, res) => {
     Event.findOne({ "id": req.params.id }, (err, event) => {
@@ -8,7 +8,7 @@ exports.add_vote = (req, res) => {
             res.send(err);
         } else if (event !== null) {
             for (let i = 0; i < req.body.votes.length; i++) {
-                let oldIndex = event.votes.findIndex((e) => {
+                const oldIndex = event.votes.findIndex((e) => {
                     return e.date === req.body.votes[i]
                 });
                 if (oldIndex < 0) {
@@ -24,10 +24,10 @@ exports.add_vote = (req, res) => {
                 if (err) {
                     console.log(err);
                 } else {
-                    let orderedVotes = saved.votes.map((e) => {
+                    const orderedVotes = saved.votes.map((e) => {
                         return { "date": e.date, "people": e.people }
                     });
-                    let resObj = {
+                    const resObj = {
                         "id": req.params.id,
                         "name": saved.name,
                         "dates": saved.dates,

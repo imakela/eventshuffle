@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Event = mongoose.model("Event");
 
 exports.create_event = (req, res) => {
-    let new_event = new Event(req.body);
+    const new_event = new Event(req.body);
     Event.nextCount((err, count) => {
         if (!err) {
             res.json({ id: count })
@@ -11,7 +11,7 @@ exports.create_event = (req, res) => {
             res.send(err);
         }
     });
-    new_event.save((err, event) => {
+    new_event.save((err) => {
         if (err) {
             console.log(err);
             res.send(err);
