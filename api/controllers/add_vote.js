@@ -18,11 +18,11 @@ exports.add_vote = (req, res) => {
                     event.votes[oldIndex].people
                         .push(req.body.name);
                 }
-
             }
             event.save((err, saved) => {
                 if (err) {
                     console.log(err);
+                    res.send(err);
                 } else {
                     const orderedVotes = saved.votes.map((e) => {
                         return { "date": e.date, "people": e.people }
