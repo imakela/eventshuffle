@@ -8,7 +8,7 @@ exports.add_vote = (req, res) => {
             res.send(err);
         } else if (event !== null) {
             for (let i = 0; i < req.body.votes.length; i++) {
-                const oldIndex = event.votes.findIndex((e) => {
+                const oldIndex = event.votes.findIndex((e) => { // Does date already exist in votes
                     return e.date === req.body.votes[i]
                 });
                 if (oldIndex < 0) {

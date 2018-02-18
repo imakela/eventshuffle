@@ -10,7 +10,7 @@ exports.show_results = (req, res) => {
         } else if (event !== null) {
             let suitableDates = [];
             if (event.votes.length > 0) {
-                const everyone = [...new Set(event.votes.map((v) => {
+                const everyone = [...new Set(event.votes.map((v) => { // Get all unique participants.
                     return v.people
                 }).reduce((a, b) => a.concat(b)))];
                 if (everyone.length > 0) {

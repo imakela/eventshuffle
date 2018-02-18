@@ -10,7 +10,7 @@ exports.read_event = (req, res) => {
             const orderedVotes = event.votes.map((e) => {
                 return { "date": e.date, "people": e.people }
             });
-            const resObj = {
+            const resObj = {         // For response being in proper order.
                 "id": event.id,
                 "name": event.name,
                 "dates": event.dates,
