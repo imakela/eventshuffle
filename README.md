@@ -1,5 +1,5 @@
 # futu_eventshuffle
-Task for Futurice tech-interview
+Task for Futurice tech-interview. A Doodle like API for scheduling events with friends. Event is created by posting a name and possible dates to the backend. Events can be queried from the backend and users can submit dates suitable for them.
 
 ## Installation & running the app
 1. Clone or download this repository
