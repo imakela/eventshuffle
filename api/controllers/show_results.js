@@ -1,9 +1,9 @@
-const mongoose = require("mongoose");
-const _ = require("lodash");
-const Event = mongoose.model("Event");
+const mongoose = require('mongoose');
+const _ = require('lodash');
+const Event = mongoose.model('Event');
 
 exports.show_results = (req, res) => {
-    Event.findOne({ "id": req.params.id }, (err, event) => {
+    Event.findOne({ 'id': req.params.id }, (err, event) => {
         if (err) {
             console.log(err);
             res.send(err);
@@ -21,17 +21,14 @@ exports.show_results = (req, res) => {
                     }
                 }
             }
-            const orderedDates = suitableDates.map((e) => {
-                return { "date": e.date, "people": e.people }
-            });
             const resObj = {
-                "id": event.id,
-                "name": event.name,
-                "suitableDates": orderedDates
+                'id': event.id,
+                'name': event.name,
+                'suitableDates': suitableDates
             };
             res.json(resObj);
         } else {
-            res.status(404).send("Event with id: '" + req.params.id + "' not found");
+            res.status(404).send('Event with id: \'' + req.params.id + '\' not found');
         }
     });
 };
